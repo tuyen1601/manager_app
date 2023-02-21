@@ -7,7 +7,7 @@ from deleteLP import DELETE
 class UI():
     def __init__(self):
         self.main = MAIN()
-        self.main.center()
+        # self.main.center()
         self.main.show()
 
         self.main.btnAdd.clicked.connect(lambda: self.ChangeUI("addLP"))
@@ -22,16 +22,16 @@ class UI():
     def ChangeUI(self, i):
         if i == "addLP":
             self.main.hide()
-            self.addLP.center()
+            # self.addLP.center()
             self.addLP.show()
         elif i == "deleteLP":
             self.main.hide()
-            self.deleteLP.center()
+            # self.deleteLP.center()
             self.deleteLP.show()
         elif i == "main":
             self.addLP.hide()
             self.deleteLP.hide()
-            self.main.center()
+            # self.main.center()
             self.main.show()
 
 

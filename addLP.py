@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QMessageBox
 from PyQt5 import uic
 
@@ -7,11 +9,25 @@ client = MongoClient(cluster)
 db = client.lpr
 manager_collection = db.manager_collection
 
-def send2Manager(iD, textLP, regis_date, expired_date):
-    db = {"ID": iD, "Licence Plate": textLP, "Registration Date": regis_date, "Expiration Date": expired_date}
+def add2Manager(iD, textLP, regisDate, expiredDate):
+    db = {"ID": iD, "Licence Plate": textLP, "Registration Date": regisDate, "Expiration Date": expiredDate}
     manager_collection.insert_one(db)
 
     return db
+
+def message_warning():
+    message = QMessageBox()
+    message.setWindowTitle("Message")
+    message.setText("Error")
+    message.setIcon(QMessageBox.Warning)
+    message.exec_()
+
+def message_information():
+    message = QMessageBox()
+    message.setWindowTitle("Message")
+    message.setText("OK")
+    message.setIcon(QMessageBox.Information)
+    message.exec_()
 
 
 class ADD(QMainWindow):
@@ -20,6 +36,8 @@ class ADD(QMainWindow):
         uic.loadUi("addLP.ui", self)
 
         self.btnOK.clicked.connect(self.addNew)
+        self.dateRegis.setDate(datetime.now().date())
+        self.dateExpired.setDate(datetime.now().date())
 
     def center(self):
         qr = self.frameGeometry()
@@ -28,16 +46,15 @@ class ADD(QMainWindow):
         self.move(qr.topLeft())
 
     def addNew(self):
-        self.message = QMessageBox()
         textLP = self.txtLP.toPlainText()
         iD = self.txtID.toPlainText()
+        regisDate = self.dateRegis.text()
+        expiredDate = self.dateExpired.text()
         if textLP == "" or iD == "":
-            self.message.setWindowTitle("Message")
-            self.message.setText("Error")
-            self.message.setIcon(QMessageBox.Warning)
-            self.message.exec_()
+            message_warning()
         else:
-            self.message.setWindowTitle("Message")
-            self.message.setText("OK")
-            self.message.setIcon(QMessageBox.Information)
-            self.message.exec_()
+            message_information()
+            dbManager = add2Manager(iD, textLP, regisDate, expiredDate)
+            self.txtLP.clear()
+            self.txtID.clear()
+
