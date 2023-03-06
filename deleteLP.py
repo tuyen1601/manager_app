@@ -2,21 +2,21 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QMessageBox
 from PyQt5 import uic
 
 from pymongo import MongoClient
-cluster = "mongodb://localhost:27017"
+cluster = "mongodb://10.37.239.135:27017"
 client = MongoClient(cluster)
 db = client.lpr
 manager_collection = db.manager_collection
 
 def delete2Manager(content, text):
     if content == "ID":
-        status = manager_collection.find_one_and_delete({"ID": text})
-        if status is None:
+        document = manager_collection.find_one_and_delete({"ID": text})
+        if document is None:
             message_warning()
         else:
             message_information()
     else:
-        status = manager_collection.find_one_and_delete({"Licence Plate": text})
-        if status is None:
+        document = manager_collection.find_one_and_delete({"Licence Plate": text})
+        if document is None:
             message_warning()
         else:
             message_information()

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>486</width>
-    <height>371</height>
+    <height>414</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,7 +116,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>280</y>
+      <y>330</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -125,11 +125,11 @@ p, li { white-space: pre-wrap; }
      <string>OK</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnCancelAdd">
+   <widget class="QPushButton" name="btnCancelMonth">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>280</y>
+      <y>330</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -142,7 +142,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>220</y>
+      <y>280</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -172,7 +172,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>220</y>
+      <y>280</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -185,7 +185,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>230</y>
+      <y>290</y>
       <width>16</width>
       <height>16</height>
      </rect>
@@ -203,7 +203,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>220</y>
+      <y>280</y>
       <width>71</width>
       <height>41</height>
      </rect>
@@ -215,6 +215,60 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>DATE:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>220</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Vehicle:</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rbCar">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>230</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>CAR</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rbMotobike">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>230</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>MOTOBIKE</string>
     </property>
    </widget>
   </widget>

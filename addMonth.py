@@ -4,13 +4,13 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QMessageBox
 from PyQt5 import uic
 
 from pymongo import MongoClient
-cluster = "mongodb://localhost:27017"
+cluster = "mongodb://10.37.239.135:27017"
 client = MongoClient(cluster)
 db = client.lpr
 manager_collection = db.manager_collection
 
-def add2Manager(iD, textLP, regisDate, expiredDate):
-    db = {"ID": iD, "Licence Plate": textLP, "Registration Date": regisDate, "Expiration Date": expiredDate}
+def add2Manager(iD, textLP, Vehicle, regisDate, expiredDate):
+    db = {"ID": iD, "Biển số": textLP, "Loại phương tiện": Vehicle, "Loại vé": "Vé tháng", "Ngày đăng ký": regisDate, "Ngày hết hạn": expiredDate}
     manager_collection.insert_one(db)
 
     return db
@@ -30,10 +30,10 @@ def message_information():
     message.exec_()
 
 
-class ADD(QMainWindow):
+class addMonth(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("addLP.ui", self)
+        uic.loadUi("addMonth.ui", self)
 
         self.btnOK.clicked.connect(self.addNew)
         self.dateRegis.setDate(datetime.now().date())
@@ -50,11 +50,17 @@ class ADD(QMainWindow):
         iD = self.txtID.toPlainText()
         regisDate = self.dateRegis.text()
         expiredDate = self.dateExpired.text()
+        if self.rbCar.isChecked():
+            Vehicle = self.rbCar.text()
+        else:
+            Vehicle = self.rbMotobike.text()
         if textLP == "" or iD == "":
+            message_warning()
+        if self.rbCar.isChecked() == False and self.rbMotobike.isChecked() == False:
             message_warning()
         else:
             message_information()
-            dbManager = add2Manager(iD, textLP, regisDate, expiredDate)
+            dbManager = add2Manager(iD, textLP, Vehicle,regisDate, expiredDate)
             self.txtLP.clear()
             self.txtID.clear()
 

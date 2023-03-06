@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>575</width>
+    <width>631</width>
     <height>304</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>250</x>
       <y>40</y>
       <width>141</width>
       <height>41</height>
@@ -32,23 +32,23 @@
      <string>MANAGER</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnAdd">
+   <widget class="QPushButton" name="btnAddMonth">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>30</x>
       <y>150</y>
       <width>121</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Them Bien So</string>
+     <string>Them Ve Thang</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnDelete">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>330</x>
       <y>150</y>
       <width>121</width>
       <height>41</height>
@@ -61,7 +61,7 @@
    <widget class="QPushButton" name="btnCheckList">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>480</x>
       <y>150</y>
       <width>121</width>
       <height>41</height>
@@ -71,13 +71,26 @@
      <string>Xem Danh Sach</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnAddDay">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>150</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Them Ve Ngay</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>575</width>
+     <width>631</width>
      <height>20</height>
     </rect>
    </property>
