@@ -46,14 +46,14 @@ class addMonth(QMainWindow):
         self.move(qr.topLeft())
 
     def addNew(self):
-        textLP = self.txtLP.toPlainText()
+        textLP = self.txtLP.toPlainText().upper()
         iD = self.txtID.toPlainText()
         regisDate = self.dateRegis.text()
         expiredDate = self.dateExpired.text()
         if self.rbCar.isChecked():
-            Vehicle = self.rbCar.text()
+            Vehicle = self.rbCar.text().lower()
         else:
-            Vehicle = self.rbMotobike.text()
+            Vehicle = self.rbMotobike.text().lower()
         if textLP == "" or iD == "":
             message_warning()
         if self.rbCar.isChecked() == False and self.rbMotobike.isChecked() == False:

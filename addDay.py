@@ -21,8 +21,8 @@ def message_information():
     message.setIcon(QMessageBox.Information)
     message.exec_()
 
-def add2Manager(iD):
-    db = {"ID": iD, "Loại vé": "Vé ngày"}
+def add2Manager(iD, vehicle):
+    db = {"ID": iD, "Vehicle": vehicle, "Loại vé": "Vé ngày"}
     manager_collection.insert_one(db)
 
 
@@ -41,9 +41,15 @@ class addDay(QMainWindow):
 
     def addNew(self):
         iD = self.txtID.toPlainText()
+        if self.rbCar.isChecked():
+            vehicle = self.rbCar.text().lower()
+        else:
+            vehicle = self.rbMotobike.text().lower()
         if iD == "":
+            message_warning()
+        if self.rbCar.isChecked() == False and self.rbMotobike.isChecked() == False:
             message_warning()
         else:
             message_information()
-            add2Manager(iD)
+            add2Manager(iD, vehicle)
             self.txtID.clear()

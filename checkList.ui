@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1184</width>
+    <width>1281</width>
     <height>833</height>
    </rect>
   </property>
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="btnCancelList">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>760</y>
+      <x>1180</x>
+      <y>750</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -30,8 +30,8 @@
    <widget class="QLineEdit" name="lnSearch">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>0</y>
+      <x>1020</x>
+      <y>10</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -40,8 +40,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>0</y>
+      <x>920</x>
+      <y>10</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -55,7 +55,7 @@
      <rect>
       <x>0</x>
       <y>40</y>
-      <width>1181</width>
+      <width>1281</width>
       <height>701</height>
      </rect>
     </property>
@@ -64,14 +64,14 @@
     </property>
     <widget class="QWidget" name="tabMonth">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Vé tháng</string>
      </attribute>
      <widget class="QTableWidget" name="tableMonth">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1181</width>
+        <width>1281</width>
         <height>671</height>
        </rect>
       </property>
@@ -105,11 +105,16 @@
         <string>Ngày hết hạn</string>
        </property>
       </column>
+      <column>
+       <property name="text">
+        <string>Trạng thái</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="tabDay">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Vé ngày</string>
      </attribute>
      <widget class="QTableWidget" name="tableDay">
       <property name="geometry">
@@ -153,13 +158,59 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QPushButton" name="btnDelete">
+    <property name="geometry">
+     <rect>
+      <x>1110</x>
+      <y>750</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/delete.png</normaloff>images/delete.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnUpdate">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>750</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/update.png</normaloff>images/update.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1184</width>
+     <width>1281</width>
      <height>20</height>
     </rect>
    </property>
