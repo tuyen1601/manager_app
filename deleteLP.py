@@ -42,8 +42,6 @@ class DELETE(QMainWindow):
         super().__init__()
         uic.loadUi("deleteLP.ui", self)
 
-        self.btnOK.clicked.connect(self.detele)
-
     def center(self):
         qr = self.frameGeometry()
         cp = QDesktopWidget().availableGeometry().center()

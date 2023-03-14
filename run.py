@@ -1,9 +1,9 @@
 from PyQt5.QtWidgets import QApplication
 
 from main import MAIN
-from addMonth import addMonth
+from addMonth import ADDMONTH
 from deleteLP import DELETE
-from addDay import addDay
+from addDay import ADDDAY
 from checkList import CHECKLIST
 
 class UI():
@@ -17,17 +17,20 @@ class UI():
         self.main.btnDelete.clicked.connect(lambda: self.ChangeUI("deleteLP"))
         self.main.btnCheckList.clicked.connect(lambda: self.ChangeUI("checkList"))
 
-        self.addMonth = addMonth()
-        self.addMonth.btnCancelMonth.clicked.connect(lambda: self.ChangeUI("main"))
+        self.addMonth = ADDMONTH()
+        self.addMonth.btnOK.clicked.connect(self.addMonth.addNew)
+        self.addMonth.btnCancel.clicked.connect(lambda: self.ChangeUI("main"))
 
-        self.addDay = addDay()
-        self.addDay.btnCancelDay.clicked.connect(lambda: self.ChangeUI("main"))
+        self.addDay = ADDDAY()
+        self.addDay.btnOK.clicked.connect(self.addDay.addNew)
+        self.addDay.btnCancel.clicked.connect(lambda: self.ChangeUI("main"))
 
         self.deleteLP = DELETE()
-        self.deleteLP.btnCancelDelete.clicked.connect(lambda: self.ChangeUI("main"))
+        self.deleteLP.btnOK.clicked.connect(self.deleteLP.detele)
+        self.deleteLP.btnCancel.clicked.connect(lambda: self.ChangeUI("main"))
 
         self.checkList = CHECKLIST()
-        self.checkList.btnCancelList.clicked.connect(lambda: self.ChangeUI("main"))
+        self.checkList.btnCancel.clicked.connect(lambda: self.ChangeUI("main"))
 
     def ChangeUI(self, i):
         if i == "addMonth":

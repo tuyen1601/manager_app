@@ -26,12 +26,10 @@ def add2Manager(iD, vehicle):
     manager_collection.insert_one(db)
 
 
-class addDay(QMainWindow):
+class ADDDAY(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("addDay.ui", self)
-
-        self.btnOK.clicked.connect(self.addNew)
 
     def center(self):
         qr = self.frameGeometry()
@@ -42,12 +40,12 @@ class addDay(QMainWindow):
     def addNew(self):
         iD = self.txtID.toPlainText()
         if self.rbCar.isChecked():
-            vehicle = self.rbCar.text().lower()
+            vehicle = self.rbCar.text()
         else:
-            vehicle = self.rbMotobike.text().lower()
+            vehicle = self.rbMotobike.text()
         if iD == "":
             message_warning()
-        if self.rbCar.isChecked() == False and self.rbMotobike.isChecked() == False:
+        elif self.rbCar.isChecked() == False and self.rbMotobike.isChecked() == False:
             message_warning()
         else:
             message_information()

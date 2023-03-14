@@ -67,7 +67,7 @@ p, li { white-space: pre-wrap; }
      <string>OK</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnCancelDay">
+   <widget class="QPushButton" name="btnCancel">
     <property name="geometry">
      <rect>
       <x>220</x>
@@ -86,7 +86,7 @@ p, li { white-space: pre-wrap; }
       <x>200</x>
       <y>170</y>
       <width>131</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -95,7 +95,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="text">
-     <string>MOTOBIKE</string>
+     <string>Xe máy</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="rbCar">
@@ -104,7 +104,7 @@ p, li { white-space: pre-wrap; }
       <x>110</x>
       <y>170</y>
       <width>71</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -113,7 +113,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="text">
-     <string>CAR</string>
+     <string>Ô tô</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">

@@ -30,12 +30,11 @@ def message_information():
     message.exec_()
 
 
-class addMonth(QMainWindow):
+class ADDMONTH(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("addMonth.ui", self)
 
-        self.btnOK.clicked.connect(self.addNew)
         self.dateRegis.setDate(datetime.now().date())
         self.dateExpired.setDate(datetime.now().date())
 
@@ -51,12 +50,14 @@ class addMonth(QMainWindow):
         regisDate = self.dateRegis.text()
         expiredDate = self.dateExpired.text()
         if self.rbCar.isChecked():
-            Vehicle = self.rbCar.text().lower()
+            Vehicle = self.rbCar.text()
         else:
-            Vehicle = self.rbMotobike.text().lower()
+            Vehicle = self.rbMotobike.text()
         if textLP == "" or iD == "":
             message_warning()
-        if self.rbCar.isChecked() == False and self.rbMotobike.isChecked() == False:
+        elif self.rbCar.isChecked() == False and self.rbMotobike.isChecked() == False:
+            message_warning()
+        elif regisDate >= expiredDate:
             message_warning()
         else:
             message_information()

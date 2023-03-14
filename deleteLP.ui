@@ -87,7 +87,7 @@ p, li { white-space: pre-wrap; }
      <string>OK</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnCancelDelete">
+   <widget class="QPushButton" name="btnCancel">
     <property name="geometry">
      <rect>
       <x>350</x>
