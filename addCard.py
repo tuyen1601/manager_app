@@ -1,11 +1,10 @@
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 from PyQt5 import uic
 
-
-class MAIN(QMainWindow):
+class ADDCARD(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("main.ui", self)
+        uic.loadUi("addCard.ui", self)
 
     def center(self):
         qr = self.frameGeometry()
