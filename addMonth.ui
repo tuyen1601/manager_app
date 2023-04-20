@@ -13,12 +13,17 @@
     <height>795</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Serif</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string/>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../../../../../../../../../../../../../../../../home/tuyen/.designer/backup/images/tax.png</normaloff>../../../../../../../../../../../../../../../../../../../../home/tuyen/.designer/backup/images/tax.png</iconset>
+    <normaloff>images/scooter.png</normaloff>images/scooter.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QGroupBox::title {

@@ -10,8 +10,17 @@
     <height>396</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Serif</family>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string/>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images/money.png</normaloff>images/money.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTableWidget" name="table">

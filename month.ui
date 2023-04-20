@@ -10,12 +10,17 @@
     <height>790</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Serif</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string/>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../../../../../../../../../../../../../../../../../../home/tuyen/.designer/backup/images/tax.png</normaloff>../../../../../../../../../../../../../../../../../../../../../../home/tuyen/.designer/backup/images/tax.png</iconset>
+    <normaloff>images/calender.png</normaloff>images/calender.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">
@@ -108,6 +113,11 @@ QLineEdit::placeholder {
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+     </font>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -118,11 +128,18 @@ QLineEdit::placeholder {
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../../../../../../../../../../../../../../../../../../home/tuyen/.designer/backup/images/search.png</pixmap>
+     <pixmap>images/search.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -131,11 +148,16 @@ QLineEdit::placeholder {
    <widget class="QPushButton" name="btnDelete">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>480</x>
       <y>10</y>
       <width>81</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+     </font>
     </property>
     <property name="text">
      <string> Xóa</string>
@@ -154,11 +176,16 @@ QLineEdit::placeholder {
    <widget class="QPushButton" name="btnUpdate">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>580</x>
       <y>10</y>
-      <width>81</width>
+      <width>101</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+     </font>
     </property>
     <property name="text">
      <string> Gia hạn</string>
@@ -204,18 +231,23 @@ QLineEdit::placeholder {
    <widget class="QPushButton" name="btnRefresh">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>970</x>
       <y>10</y>
-      <width>81</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+     </font>
+    </property>
     <property name="text">
-     <string>Làm mới</string>
+     <string/>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../../../../../../../../../../../../../../../../../home/tuyen/.designer/backup/images/refresh.png</normaloff>../../../../../../../../../../../../../../../../../../../../home/tuyen/.designer/backup/images/refresh.png</iconset>
+      <normaloff>images/refresh.png</normaloff>images/refresh.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -341,25 +373,39 @@ QLineEdit::placeholder {
      <rect>
       <x>360</x>
       <y>10</y>
-      <width>81</width>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+     </font>
+    </property>
     <property name="text">
-     <string>Đăng ký</string>
+     <string> Đăng ký</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/write.png</normaloff>images/write.png</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="btnChange">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>700</x>
       <y>10</y>
-      <width>81</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+     </font>
+    </property>
     <property name="text">
-     <string>Đổi thẻ</string>
+     <string> Đổi thẻ</string>
     </property>
     <property name="icon">
      <iconset>
@@ -369,14 +415,23 @@ QLineEdit::placeholder {
    <widget class="QPushButton" name="btnImport">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>810</x>
       <y>10</y>
-      <width>81</width>
+      <width>141</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Serif</family>
+     </font>
+    </property>
     <property name="text">
-     <string>Nhập excel</string>
+     <string> Đăng ký nhiều</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/excel.png</normaloff>images/excel.png</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="lblSelectedFile">

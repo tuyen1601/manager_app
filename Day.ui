@@ -10,8 +10,17 @@
     <height>711</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Serif</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string/>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images/ticket.png</normaloff>images/ticket.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">

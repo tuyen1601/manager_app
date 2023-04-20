@@ -29,6 +29,8 @@ class REVENUE(QMainWindow):
         self.display()
 
         self.btn.clicked.connect(self.revenue)
+        self.btn.clicked.connect(self.sumCard)
+        self.btn.clicked.connect(self.calculateRevenue)
 
     def center(self):
         qr = self.frameGeometry()
@@ -298,6 +300,58 @@ class REVENUE(QMainWindow):
                 sumMonth += int(self.table.item(k, i).text())
             self.table.setItem(5, i, QTableWidgetItem(str(sumMonth)))
             sumMonth = 0
+
+    def sumCard(self):
+        sumCard = 0
+        for i in range(2, 6):
+            for j in range(4, 6):
+                sumCard += int(self.table.item(j, i).text())
+            self.table.setItem(6, i, QTableWidgetItem(str(sumCard)))
+            sumCard = 0
+
+    def calculateCar(self, timeStart, timeEnd):
+        documentCar = out_collection.find({"Loại xe": "Ô tô", "Loại vé": "Vé lượt"})
+        sumCar = 0
+        for doc in documentCar:
+            if timeStart <= doc["Thời gian vào"] and timeEnd >= doc["Thời gian ra"]:
+                sumCar += doc["Giá vé"]
+
+        return sumCar 
+
+    def calculateMotobike(self, timeStart, timeEnd):
+        documentMotobike = out_collection.find({"Loại xe": "Xe máy", "Loại vé": "Vé lượt"})
+        sumMotobike = 0
+        for doc in documentMotobike:
+            if timeStart <= doc["Thời gian vào"] and timeEnd >= doc["Thời gian ra"]:
+                sumMotobike += doc["Giá vé"]
+
+        return sumMotobike
+
+    def calculateRevenue(self):
+        timeStart = datetime.strptime(self.dateStart.text(), "%d/%m/%Y %H:%M")
+        timeEnd = datetime.strptime(self.dateEnd.text(), "%d/%m/%Y %H:%M")
+        card = self.cbbCard.currentText()
+        vehicle = self.cbbVehicle.currentText()
+
+        sumCar = self.calculateCar(timeStart, timeEnd)
+        sumMotobike = self.calculateMotobike(timeStart, timeEnd)
+
+        if card != "Vé tháng" and vehicle == "Tất cả loại xe":
+            self.table.setItem(1, 6, QTableWidgetItem(str(sumCar)))
+            self.table.setItem(0, 6, QTableWidgetItem(str(sumMotobike)))
+
+            self.table.setItem(4, 6, QTableWidgetItem(str(sumMotobike + sumCar)))
+            self.table.setItem(6, 6, QTableWidgetItem(str(sumMotobike + sumCar)))
+        elif card != "Vé tháng" and vehicle == "Xe máy":
+            self.table.setItem(0, 6, QTableWidgetItem(str(sumMotobike)))
+
+            self.table.setItem(4, 6, QTableWidgetItem(str(sumMotobike)))
+            self.table.setItem(6, 6, QTableWidgetItem(str(sumMotobike)))
+        elif card != "Vé tháng" and vehicle == "Ô tô":
+            self.table.setItem(0, 6, QTableWidgetItem(str(sumCar)))
+
+            self.table.setItem(4, 6, QTableWidgetItem(str(sumCar)))
+            self.table.setItem(6, 6, QTableWidgetItem(str(sumCar)))
 
 
 if __name__ == "__main__":

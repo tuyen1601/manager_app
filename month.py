@@ -74,6 +74,7 @@ class MONTH(QMainWindow):
 
         #add new
         self.btnAdd.clicked.connect(self.displayAddNew)
+        # self.btnAdd.clicked.connect(self.addMonth.lblMessage.setText(""))
         self.addMonth.btnOK.clicked.connect(self.addNew)
 
         #refresh table
