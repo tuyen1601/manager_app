@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QApplication, QSlider, 
 from PyQt5 import uic
 
 from pymongo import MongoClient
-cluster = "mongodb://10.37.239.135:27017"
+cluster = "mongodb+srv://tuyennt:0711@lpr.3u3tc8j.mongodb.net/test"
 client = MongoClient(cluster)
 db = client.lpr
 priceData = db.price

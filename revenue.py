@@ -4,7 +4,7 @@ from PyQt5 import uic
 from datetime import datetime
 
 from pymongo import MongoClient
-cluster = "mongodb://10.37.239.135:27017"
+cluster = "mongodb+srv://tuyennt:0711@lpr.3u3tc8j.mongodb.net/test"
 client = MongoClient(cluster)
 db = client.lpr
 in_collection = db.in_collection
@@ -66,228 +66,65 @@ class REVENUE(QMainWindow):
         self.count3 = 0
         self.count4 = 0
 
+    def revenueEachRow(self, i, timeStart, timeEnd, vehicle, card):
+        documents = out_collection.find({"Loại xe": vehicle, "Loại vé": card})
+        for doc in documents:
+            if timeStart > timeEnd:
+                self.display()
+            else:
+                if timeStart > doc["Thời gian vào"]:
+                    self.count1 += 1
+                if timeStart < doc["Thời gian vào"] < timeEnd:
+                    self.count2 += 1
+                if timeEnd > doc["Thời gian ra"]:
+                    self.count3 += 1
+                if timeEnd < doc["Thời gian vào"]:
+                    self.count4 +=1
+        self.table.setItem(i, 2, QTableWidgetItem(str(self.count1)))
+        self.table.setItem(i, 3, QTableWidgetItem(str(self.count2)))
+        self.table.setItem(i, 4, QTableWidgetItem(str(self.count3)))
+        self.table.setItem(i, 5, QTableWidgetItem(str(self.count4)))
+
+        self.resetCount()
+
     def revenue(self):
         self.display()
 
         timeStart = datetime.strptime(self.dateStart.text(), "%d/%m/%Y %H:%M")
         timeEnd = datetime.strptime(self.dateEnd.text(), "%d/%m/%Y %H:%M")
-        card = self.cbbCard.currentText()
-        vehicle = self.cbbVehicle.currentText()
+        cardSelected = self.cbbCard.currentText()
+        vehicleSelected = self.cbbVehicle.currentText()
 
-        # couting 
-        if card == "Tất cả loại vé" and vehicle == "Tất cả loại xe":
-            # 1
-            documents = in_collection.find({"Loại xe": "Xe máy", "Loại vé": "Vé lượt"})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(0, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(0, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(0, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(0, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-            #2
-            documents = in_collection.find({"Loại xe": "Ô tô", "Loại vé": "Vé lượt"})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(1, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(1, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(1, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(1, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-            #3
-            documents = in_collection.find({"Loại xe": "Xe máy", "Loại vé": "Vé tháng"})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(2, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(2, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(2, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(2, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-            #4
-            documents = in_collection.find({"Loại xe": "Ô tô", "Loại vé": "Vé tháng"})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(3, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(3, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(3, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(3, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-        elif card != "Tất cả loại vé" and vehicle == "Tất cả loại xe":
-            if card == "Vé lượt":
-                i = 0
-                j = 1
-            else: 
-                i = 2
-                j = 3
-            #1
-            documents = in_collection.find({"Loại vé": card, "Loại xe": "Xe máy"})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(i, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(i, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(i, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(i, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-            #2
-            documents = in_collection.find({"Loại vé": card, "Loại xe": "Ô tô"})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(j, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(j, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(j, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(j, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-        elif card == "Tất cả loại vé" and vehicle != "Tất cả loại xe":
-            if vehicle == "Xe máy":
-                i = 0
-                j = 2
-            else: 
-                i = 1
-                j = 3
-            #1
-            documents = in_collection.find({"Loại vé": "Vé lượt", "Loại xe": vehicle})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(i, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(i, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(i, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(i, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-            #2
-            documents = in_collection.find({"Loại vé": "Vé tháng", "Loại xe": vehicle})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(j, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(j, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(j, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(j, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
-        else:
-            if card == "Vé lượt" and vehicle == "Xe máy":
-                i = 0
-            elif card == "Vé lượt" and vehicle == "Ô tô":
-                i = 1
-            elif card == "Vé tháng" and vehicle == "Xe máy":
-                i = 2
+        if cardSelected == "Tất cả loại vé" and vehicleSelected == "Tất cả loại xe":
+            for i in range(4):
+                vehicle = self.table.item(i, 0).text()
+                card = self.table.item(i, 1).text()
+                self.revenueEachRow(i, timeStart, timeEnd, vehicle, card)
+        elif cardSelected == "Tất cả loại vé":
+            if vehicleSelected == "Xe máy":
+                for i in [0, 2]:
+                    card = self.table.item(i, 1).text()
+                    self.revenueEachRow(i, timeStart, timeEnd, vehicleSelected, card)
             else:
-                i = 3
+                for i in [1, 3]:
+                    card = self.table.item(i, 1).text()
+                    self.revenueEachRow(i, timeStart, timeEnd, vehicleSelected, card)
+        elif vehicleSelected == "Tất cả loại xe":
+            if cardSelected == "Vé lượt":
+                for i in [0, 1]:
+                    vehicle = self.table.item(i, 0).text()
+                    self.revenueEachRow(i, timeStart, timeEnd, vehicle, cardSelected)
+            else:
+                for i in [2, 3]:
+                    vehicle = self.table.item(i, 0).text()
+                    self.revenueEachRow(i, timeStart, timeEnd, vehicle, cardSelected)
+        else:
+            for i in range(4):
+                vehicle = self.table.item(i, 0).text()
+                card = self.table.item(i, 1).text()
 
-            documents = in_collection.find({"Loại vé": card, "Loại xe": vehicle})
-            for doc in documents:
-                if timeStart > timeEnd:
-                    self.display()
-                else:
-                    if timeStart > doc["Thời gian vào"]:
-                        self.count1 += 1
-                    if timeStart < doc["Thời gian vào"] < timeEnd:
-                        self.count2 += 1
-                    if timeEnd < doc["Thời gian vào"]:
-                        self.count4 +=1
-                    if doc["Status"] == "Out":
-                        self.count3 += 1
-            self.table.setItem(i, 2, QTableWidgetItem(str(self.count1)))
-            self.table.setItem(i, 3, QTableWidgetItem(str(self.count2)))
-            self.table.setItem(i, 4, QTableWidgetItem(str(self.count3)))
-            self.table.setItem(i, 5, QTableWidgetItem(str(self.count4)))
-
-            self.resetCount()
-
+                if vehicle == vehicleSelected and card == cardSelected:
+                    self.revenueEachRow(i, timeStart, timeEnd, vehicleSelected, cardSelected)
         # canculate sum card
         sumDay = 0
         sumMonth = 0

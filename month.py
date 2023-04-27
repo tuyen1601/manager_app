@@ -8,7 +8,7 @@ from pymongo import MongoClient
 
 import pandas as pd
 
-cluster = "mongodb://10.37.239.135:27017"
+cluster = "mongodb+srv://tuyennt:0711@lpr.3u3tc8j.mongodb.net/test"
 client = MongoClient(cluster)
 db = client.lpr
 manager_collection = db.manager_collection
@@ -27,7 +27,7 @@ def add2Manager(name, address, textLP, vehicle, id, regisDate, expiredDate, mode
     manager_collection.insert_one(db)
 
 def checkID(id):
-    return manager_collection.find_one({"Mã thẻ": id})
+    return card.find_one({"Mã thẻ": id})
 
 ############################ begin
 
@@ -74,6 +74,7 @@ class MONTH(QMainWindow):
 
         #add new
         self.btnAdd.clicked.connect(self.displayAddNew)
+        self.addMonth.btnRandom.clicked.connect(self.randomID)
         # self.btnAdd.clicked.connect(self.addMonth.lblMessage.setText(""))
         self.addMonth.btnOK.clicked.connect(self.addNew)
 
@@ -119,9 +120,12 @@ class MONTH(QMainWindow):
                         df.iloc[index, 10] = "Xe chưa được đăng ký do thiếu thẻ trống"
                     else:
                         random_id = card.find_one(search_command)["Mã thẻ"]
-                        priceMotobike = price_collection.find_one({"Loại phương tiện": excel_vehicle, "Trạng thái": "Sử dụng"})["Giá vé tháng"]
+                        if price_collection.count_documents({}) == 0:
+                            priceVehicle = 0 
+                        else:
+                            priceVehicle = price_collection.find_one({"Loại phương tiện": excel_vehicle, "Trạng thái": "Sử dụng"})["Giá vé tháng"]
                         add2Manager(excel_name, excel_address, excel_textLP, excel_vehicle, random_id, 
-                                    excel_regisDate, excel_expiredDate, excel_model, excel_phone, priceMotobike, excel_note)
+                                    excel_regisDate, excel_expiredDate, excel_model, excel_phone, priceVehicle, excel_note)
                         updateStatus_LP_ByID(random_id, status="Đã sử dụng", textLP=excel_textLP)
                         success_count += 1
             
@@ -132,6 +136,14 @@ class MONTH(QMainWindow):
             df.to_excel('output.xlsx', index=False)
 
 ########################################################## end
+
+    def randomID(self):
+        search_command = {"Loại thẻ": "Thẻ tháng", "Trạng thái": "Chưa sử dụng"}
+        if card.count_documents(search_command) == 0:
+            self.addMonth.lblMessage.setText("Hết thẻ trống")
+        else:
+            idRandom = card.find_one(search_command)["Mã thẻ"]
+            self.addMonth.txtID.setText(idRandom)
 
     def center(self):
         qr = self.frameGeometry()
@@ -270,26 +282,30 @@ class MONTH(QMainWindow):
             else:
                 self.addMonth.lblModel.setText("")
         else:
-            check = checkID(id)
-            if check is None:
-                self.addMonth.lblMessage.setText("ĐĂNG KÝ THÀNH CÔNG")
-                add2Manager(name, address, textLP, vehicle, id, regisDate, expiredDate, model, phone, price, note)
-                self.addMonth.txtName.clear()
-                self.addMonth.txtAddress.clear()
-                self.addMonth.txtPhone.clear()
-                self.addMonth.txtModel.clear()
-                self.addMonth.txtLP.clear()
-                self.addMonth.txtID.clear()
+            doc = checkID(id)
+            if doc is not None:
+                if doc["Trạng thái"] == "Chưa sử dụng":
+                    self.addMonth.lblMessage.setText("ĐĂNG KÝ THÀNH CÔNG")
+                    add2Manager(name, address, textLP, vehicle, id, regisDate, expiredDate, model, phone, price, note)
+                    updateStatus_LP_ByID(id, status="Đã sử dụng", textLP=textLP)
+                    self.addMonth.txtName.clear()
+                    self.addMonth.txtAddress.clear()
+                    self.addMonth.txtPhone.clear()
+                    self.addMonth.txtModel.clear()
+                    self.addMonth.txtLP.clear()
+                    self.addMonth.txtID.clear()
 
-                self.addMonth.lblName.setText("")
-                self.addMonth.lblAddress.setText("")
-                self.addMonth.lblLP.setText("")
-                self.addMonth.lblID.setText("")
-                self.addMonth.lblDate.setText("")
-                self.addMonth.lblPhone.setText("")
-                self.addMonth.lblModel.setText("")
+                    self.addMonth.lblName.setText("")
+                    self.addMonth.lblAddress.setText("")
+                    self.addMonth.lblLP.setText("")
+                    self.addMonth.lblID.setText("")
+                    self.addMonth.lblDate.setText("")
+                    self.addMonth.lblPhone.setText("")
+                    self.addMonth.lblModel.setText("")
+                else:
+                    self.addMonth.lblID.setText("Thẻ đã tồn tại")
             else:
-                self.addMonth.lblID.setText("Thẻ đã tồn tại")
+                self.addMonth.lblID.setText("Thẻ không tồn tại")
                 
         self.displayList()
 
@@ -401,9 +417,17 @@ class MONTH(QMainWindow):
         id = self.addMonth.txtID.text()
         plate = self.addMonth.txtLP.text()
 
-        updateID2Manager(plate, id)
-        self.addMonth.lblMessage.setText("ĐỔI THẺ THÀNH CÔNG")
-
+        doc = checkID(id)
+        if doc is not None:
+            if doc["Trạng thái"] == "Chưa sử dụng":
+                updateID2Manager(plate, id)
+                self.addMonth.lblMessage.setText("ĐỔI THẺ THÀNH CÔNG")
+            else:
+                self.addMonth.lblMessage.setText("THẺ ĐANG ĐƯỢC SỬ DỤNG")
+                self.addMonth.lblMessage.setStyleSheet("color: red")
+        else:
+            self.addMonth.lblMessage.setText("THẺ KHÔNG TỒN TẠI")
+            self.addMonth.lblMessage.setStyleSheet("color: red")
         self.displayList()
 
 

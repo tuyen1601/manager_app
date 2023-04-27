@@ -5,7 +5,7 @@ from PyQt5 import uic
 from datetime import datetime
 
 from pymongo import MongoClient
-cluster = "mongodb://10.37.239.135:27017"
+cluster = "mongodb+srv://tuyennt:0711@lpr.3u3tc8j.mongodb.net/test"
 client = MongoClient(cluster)
 db = client.lpr
 in_collection = db.in_collection

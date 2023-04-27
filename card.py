@@ -7,7 +7,7 @@ from addCard import ADDCARD
 
 from pymongo import MongoClient
 
-cluster = "mongodb://10.37.239.135:27017"
+cluster = "mongodb+srv://tuyennt:0711@lpr.3u3tc8j.mongodb.net/test"
 client = MongoClient(cluster)
 db = client.lpr
 card = db.card # type(card) == <class 'pymongo.collection.Collection'>
