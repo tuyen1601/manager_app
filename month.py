@@ -95,7 +95,7 @@ class MONTH(QMainWindow):
             success_count = 0
             lp_duplicate_count = 0
 
-            self.lblSelectedFile.setText(fname[0])
+            # self.lblSelectedFile.setText(fname[0])
             df = pd.read_excel(fname[0], sheet_name='Sheet1')
             df['Trạng thái thêm'] = 'Thêm thành công'
             

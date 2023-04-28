@@ -125,6 +125,7 @@ class REVENUE(QMainWindow):
 
                 if vehicle == vehicleSelected and card == cardSelected:
                     self.revenueEachRow(i, timeStart, timeEnd, vehicleSelected, cardSelected)
+                    
         # canculate sum card
         sumDay = 0
         sumMonth = 0

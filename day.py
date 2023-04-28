@@ -91,7 +91,7 @@ class DAY(QMainWindow):
         vehicle = self.cbbVehicle.currentText()
         name = self.lnName.text()
         nightStart = self.lnSld1.text()
-        nightEnd = self.lnSld1.text()
+        nightEnd = self.lnSld2.text()
         dayPrice = self.spb1.value()
         nightPrice = self.spb2.value()
         monthPrice = self.spb3.value()
