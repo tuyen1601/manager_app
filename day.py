@@ -26,7 +26,7 @@ def checkName(name):
 class DAY(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("Day.ui", self)
+        uic.loadUi("day.ui", self)
 
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
